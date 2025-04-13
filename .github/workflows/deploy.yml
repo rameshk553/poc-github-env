@@ -7,11 +7,26 @@ on:
   workflow_dispatch:    
 
 jobs:
-  deploy:
-    name: Deploy to Production
+  deploy_to_development:
+    name: Deploy to Development
     runs-on: ubuntu-latest
     environment:
-      name: ${{ github.ref_name == 'main' && 'production' || 'development' }}  # This links to your GitHub Environment
+      name: development # This links to your GitHub Environment
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy Application
+        run: echo "Deploying to development..."
+
+      - name: Use Secret
+        run: echo "The secret is ${{ secrets.API_KEY }}"
+
+  deploy_to_production:
+    name: Deploy to Development
+    runs-on: ubuntu-latest
+    environment:
+      name: production # This links to your GitHub Environment
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
