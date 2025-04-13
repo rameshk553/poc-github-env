@@ -17,3 +17,7 @@ jobs:
 
       - name: Deploy Application
         run: echo "Deploying to Production..."
+
+      - name: Use Secret
+        run: echo "The secret is ${{ secrets.API_KEY }}"
+
